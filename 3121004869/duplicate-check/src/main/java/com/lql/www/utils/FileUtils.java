@@ -33,7 +33,14 @@ public class FileUtils {
         return builder.toString();
     }
 
-    public static boolean writeToFile(String path,String content) throws IOException{
+    /**
+     * 向文件中写入文本
+     *
+     * @param path 文件路径
+     * @param content 写入的文本内容
+     * @throws IOException 抛出打开文件失败的异常
+     */
+    public static void writeToFile(String path,String content) throws IOException{
         // 创建FileOutputStream对象，如果文件不存在会自动创建
         FileOutputStream fos = new FileOutputStream(path,true);
         // 将内容转换为字节数组
@@ -42,7 +49,5 @@ public class FileUtils {
         fos.write(bytes);
         // 关闭文件流
         fos.close();
-
-        return true;
     }
 }

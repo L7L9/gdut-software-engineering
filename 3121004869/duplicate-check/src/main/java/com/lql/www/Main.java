@@ -22,7 +22,7 @@ public class Main {
 
         // 判断参数的合法性
         for (String parameter: args) {
-            if (!parameter.endsWith("*.txt")){
+            if (!parameter.endsWith(".txt")){
                 System.out.println("参数输入有误，请重新输入");
                 return;
             }

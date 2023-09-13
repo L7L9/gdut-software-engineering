@@ -3,10 +3,7 @@ package com.lql.www.utils;
 import com.huaban.analysis.jieba.JiebaSegmenter;
 
 import java.io.*;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -42,20 +39,23 @@ public class SeparateWordUtils {
         }
     }
 
-
     /**
+     * 分词并计算每个词出现的频率
+     *
      * @param text 输入文本
      * @return {@link Set}<{@link String}> 返回单词集合
      */
-    public Set<String> separateWord(String text){
-        Set<String> set = new HashSet<>();
+    public Map<String,Integer> separateWord(String text){
         // 分词
         List<String> result = segmenter.sentenceProcess(text);
+
+        Map<String,Integer> wordMap = new HashMap<>();
         // 过滤掉标点符号
-        result = result.stream().map(String::trim).filter(o -> !normalWordList.contains(o)).collect(Collectors.toList());
-        if(!set.addAll(result)){
-            System.out.println("分词失败");
-        }
-        return set;
+        result.stream().map(String::trim).filter(o -> !normalWordList.contains(o)).collect(Collectors.toList()).forEach(item->{
+            // 装入map
+            Integer frequency = wordMap.getOrDefault(item,0);
+            wordMap.put(item,frequency + 1);
+        });
+        return wordMap;
     }
 }

@@ -1,6 +1,5 @@
 package com.lql.www.utils;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
